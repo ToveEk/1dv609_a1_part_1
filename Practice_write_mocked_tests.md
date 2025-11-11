@@ -27,30 +27,19 @@ A bug in the SwedishSecurityNumber must not fail due to a bug in SSNHelper.
 
 
 ### Table for checking test suite bug coverage
-| Version | Correct | Buggy Password 1 | Buggy Helper 2 | ... | |
-| --- | ---| --- | --- | --- | --- |
-| SwedishSecurityNumber Test name 1 | ✅ | ❌ | ✅ | ✅ | |
-| SSNHelper Test name 3 | ✅ | ✅ | ❌ | ✅ | |
-| Coverage | 100% | 100% | 100% | 100% | |
+| SUT | Test | Correct | BuggySSNHelperWrongLength | Buggy Helper 2 | ... | |
+| --- | ---| --- | --- | --- | --- | --- |
+| SwedishSecurityNumber | Test name 1 | ✅ | ❌ | ✅ | ✅ | | 
+| SwedishSecurityNumber | Test name 2 | ✅ | ❌ | ✅ | ✅ | | 
+| SSNHelper  | Test name 3 | ✅ | ✅ | ❌ | ✅ | | |
+| Coverage |  | 100% | 100% | 100% | | |
 
 
 
 ### Reflection Questions
 * What is the purpose of mocks?
+* Why is it good if tests are independent of classes that the SUT depends on?
+* Should private methods be tested? What are the pros and cons of having a "helper class" instead of private methods?
+* Can all bugs be found by testing?
+* Can all code be 100 covered by tests?
 
-
-```
-//Version 2 Buggy Password, does not trim
-
-//Version 3 Buggy Password, does not check password with isToShort
-//Version 3 Buggy Helper, allows too short passwords
-
-//Version 4 Buggy Password, throws the wrong exception message for short passwords
-
-//Version 5 Buggy Password, does not throw and exception for short passwords
-
-//Version 6 Buggy, does not throw an exception if the password does not contain a number
-
-//Version 7 Buggy, isPasswordSame returns true for all passwords
-
-```

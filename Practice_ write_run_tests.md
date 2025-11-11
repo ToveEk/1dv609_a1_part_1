@@ -66,4 +66,5 @@ During Examination you may be asked these or related questions. You should be ab
 - Can all code be covered by code coverage? Why not?
 - What kind of "asserts"/"expects" can be done in your testing framework? Make a summary.
 - What kind(s) of Code Coverage is shown in your code coverage tool? What does it mean?
+- Why should a single test only have one assert/expect?
 
