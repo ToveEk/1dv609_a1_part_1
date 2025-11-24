@@ -11,7 +11,7 @@
 // import { Password } from '../src/BugVeryShort'
 // import { Password } from '../src/BugWrongHashingAlgorithm'
 // import { Password } from '../src/BugWrongMessage'
-import { Password } from '../src/Correct'
+ import { Password } from '../src/Correct'
 
 describe('Password class, test suite', () => {
     //put constants here to increase readability
@@ -19,21 +19,29 @@ describe('Password class, test suite', () => {
     const validPassword = 'ValidPassword1'
     const pwWith12Characters = 'Password1234'
     const pwWith11Characters = 'Password123'
-    const tooShortPw = 'TooShort1'
+    const tooShortPassword = 'Mini1'
+    const noNumberPassword = 'Password'
 
 
     // constructor test
-    test('create valid password', () => {
+    test('valid password should pass', () => {
         expect(() => {
             new Password(validPassword)
         }).not.toThrow()
     });
 
     // test for exactly 12 characters (edge case)
-    test('valid password with exactly 12 characters', () => {
+    test('valid password with exactly 12 characters should pass', () => {
         expect(() => {
             new Password(pwWith12Characters)
         }).not.toThrow()
+    })
+
+    // test for too short password
+    test('too short password should throw error', () => {
+        expect(() => {
+            new Password(tooShortPassword)
+        }).toThrow('Too short password')
     })
 
     // test for 11 characters (edge case)
@@ -42,4 +50,18 @@ describe('Password class, test suite', () => {
             new Password(pwWith11Characters)
         }).toThrow('Too short password')
     })
+
+    // test for empty password
+    test('empty password should throw error', () => {
+        expect(() => {
+            new Password(emptyPassword)
+        }).toThrow('Too short password')
+    })
+
+    // test for missing number
+
+    // test for no hashing
+
+    // test for no trimming
+
 });
