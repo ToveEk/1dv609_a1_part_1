@@ -11,6 +11,7 @@
 // import { Password } from '../src/BugVeryShort'
 // import { Password } from '../src/BugWrongHashingAlgorithm'
 // import { Password } from '../src/BugWrongMessage'
+// import { Password } from '../src/MyCustomBug'
  import { Password } from '../src/Correct'
 
 describe('Password class, test suite', () => {
