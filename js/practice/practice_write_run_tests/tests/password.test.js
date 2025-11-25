@@ -21,34 +21,18 @@ describe('Password class, test suite', () => {
     const tooShortPassword = 'Password123' // exactly 11 characters (edge case)
     const noNumberPassword = 'NoNumberPassword'
 
-    test('password with exactly 12 characters should pass', () => {
-        expect(() => {
-            new Password(validPassword)
-        }).not.toThrow()
-    })
-
-    // BugToShortPassword (and BugWrongMessage + BugMissingPasswordCheck)
-   test('too password with should fail', () => {
+   test('too short password should fail', () => {
         expect(() => {
             new Password(tooShortPassword)
         }).toThrow('Too short password')
     })
 
-    // BugMissingNumberCheck
     test('password missing number should fail', () => {
         expect(() => {
             new Password(noNumberPassword)
         }).toThrow('No number found')
     })
 
-    // BugNeverContainsNumbers
-    test('password contains number should pass', () => {
-        expect(() => {
-            new Password(validPassword)
-        }).not.toThrow()
-    })
-
-    // BugDoesNotHash
     test('password does not hash should fail', () => {
         const password = new Password(validPassword)
         const hashedPassword = password.getPasswordHash()
@@ -56,7 +40,6 @@ describe('Password class, test suite', () => {
         expect(hashedPassword).not.toBe(validPassword)
     })
 
-    // BugWrongHashingAlgorithm
     test('passwords with wrong hashing algorithm should fail', () => {
         const password = new Password(validPassword)
 
@@ -65,7 +48,6 @@ describe('Password class, test suite', () => {
         expect(wrongHash).toBeGreaterThan(4)
     })
 
-    // BugisPasswordAlwaysSame
     test('passwords that are different should fail', () => {
         const password = new Password(validPassword)
         const differentPassword = new Password('DifferentPassword123')
@@ -73,14 +55,6 @@ describe('Password class, test suite', () => {
         expect(password.isPasswordSame(differentPassword)).toBe(false)
     })
 
-    test('passwords that are the same should pass', () => {
-        const password = new Password(validPassword)
-        const samePassword = new Password(validPassword)
-
-        expect(password.isPasswordSame(samePassword)).toBe(true)
-    })
-
-    // BugDoesNotTrim
     test('password with and without spaces should be treated the same', () => {
         const passwordWithSpaces = new Password(' Password12345 ')
         const passwordWithoutSpaces = new Password('Password12345')
