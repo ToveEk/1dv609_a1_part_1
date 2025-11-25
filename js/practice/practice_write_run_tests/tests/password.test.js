@@ -5,56 +5,32 @@
 // import { Password } from '../src/BugDoesNotTrim'
 // import { Password } from '../src/BugisPasswordAlwaysSame'
 // import { Password } from '../src/BugMissingNumberCheck'
- import { Password } from '../src/BugMissingPasswordCheck'
+// import { Password } from '../src/BugMissingPasswordCheck'
 // import { Password } from '../src/BugNeverContainsNumbers'
 // import { Password } from '../src/BugToShortPassword'
 // import { Password } from '../src/BugVeryShort'
 // import { Password } from '../src/BugWrongHashingAlgorithm'
 // import { Password } from '../src/BugWrongMessage'
-// import { Password } from '../src/Correct'
+ import { Password } from '../src/Correct'
 
 describe('Password class, test suite', () => {
     // valid
-    const validPassword = 'ValidPassword1'
-    const pwWith12Characters = 'Password1234'
+    const validPassword = 'Password1234' // exactly 12 characters (egde case)
 
     // invalid
-    const emptyPassword = '';
-    const pwWith11Characters = 'Password123'
-    const tooShortPassword = 'Mini1'
+    const tooShortPassword = 'Password123' // exactly 11 characters (edge case)
     const noNumberPassword = 'NoNumberPassword'
-
-    // valid password tests
-    test('password with 14 characters should pass', () => {
-        expect(() => {
-            new Password(validPassword)
-        }).not.toThrow()
-    });
 
     test('password with exactly 12 characters should pass', () => {
         expect(() => {
-            new Password(pwWith12Characters)
+            new Password(validPassword)
         }).not.toThrow()
     })
 
-    // BugVeryShort (and BugWrongMessage)
-    test('password with 5 characters should fail', () => {
+    // BugToShortPassword (and BugWrongMessage + BugMissingPasswordCheck)
+   test('too password with should fail', () => {
         expect(() => {
             new Password(tooShortPassword)
-        }).toThrow('Too short password')
-    })
-
-    // BugToShortPassword (and BugWrongMessage)
-    test('password with exactly 11 characters should fail', () => {
-        expect(() => {
-            new Password(pwWith11Characters)
-        }).toThrow('Too short password')
-    })
-
-    // BugMissingPasswordCheck
-    test('missing password should fail', () => {
-        expect(() => {
-            new Password(emptyPassword)
         }).toThrow('Too short password')
     })
 
