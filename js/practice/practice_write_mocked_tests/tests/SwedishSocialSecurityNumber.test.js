@@ -1,4 +1,4 @@
-import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber'; 
+import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber';
 
 
 
@@ -11,4 +11,19 @@ describe('SwedishSocialSecurityNumber Tests', () => {
     });
 
     //Add your tests here
+    test('missing number length check should fail', () => {
+
+    })
+
+    test('no number trim should fail', () => {
+
+    })
+
+    test('no number luhn should fail', () => {
+
+    })
+
+    test('wrong year should fail', () => {
+
+    })
 });
