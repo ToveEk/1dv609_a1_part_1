@@ -1,8 +1,8 @@
 import { expect, jest } from '@jest/globals';
 
-// import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber';
+ import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber';
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoLenCheck';
- import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoTrim';
+// import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoTrim';
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecutityNumberNoLuhn';
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecutityNumberWrongYear';
 
@@ -26,19 +26,16 @@ describe('SwedishSocialSecurityNumber Tests', () => {
     
     test('missing trim should fail', () => {
         const mockHelper = {
-        isCorrectLength: jest.fn().mockReturnValue(false),
+        isCorrectLength: jest.fn().mockReturnValue(true),
         isCorrectFormat: jest.fn().mockReturnValue(true),
         isValidMonth: jest.fn().mockReturnValue(true),
         isValidDay: jest.fn().mockReturnValue(true),
         luhnisCorrect: jest.fn().mockReturnValue(true)
         }
 
-        // const ssnWithSpaces = new SwedishSocialSecurityNumber(' 900101-3029 ', mockHelper)
-        const stringInput = ' 900101-3029 '
+        new SwedishSocialSecurityNumber(' 900101-3029 ', mockHelper)
 
-        const mockTrim = jest.fn(() => { stringInput.trim() })
-
-        expect(mockTrim(stringInput)).not.toThrow
+        expect(mockHelper.isCorrectFormat).toHaveBeenCalledWith('900101-3029')
     })
 
     test('missing luhn check should fail', () => {
