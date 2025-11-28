@@ -12,7 +12,7 @@
 
 ## SSN Helper Tests
 
-| SUT | Test | Correct SSNHelper | AllowDayUpTo30 | AllowMonth0 | IncorrectFormat | MessyLuhn | WrongLength |
+| SUT | Test | Correct | AllowDayUpTo30 | AllowMonth0 | IncorrectFormat | MessyLuhn | WrongLength |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | SSNHelper  | day 31 should pass | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | --- | --- |
 | SSNHelper  | month 0 should fail | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | --- | --- |
@@ -24,8 +24,11 @@
 | Coverage   |                          | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 
 ## Swedish Social Security Number Tests
-| SUT | Test | Correct SwedishSocialSecurityNumber | NoLenCheck | NoTrim | NoLuhn | WrongYear |
-| --- | ---| --- | --- | --- | --- | --- |
-| SwedishSecurityNumber | Test name 1 | ✅ |  |  |  | | 
-| SwedishSecurityNumber | Test name 2 | ✅ |  |  |  | | 
-| Coverage |  | 100% | 100% | 100% | | |
+| SUT | Test | Correct  | NoLenCheck | NoTrim | NoLuhn | WrongYear | NoFormatCheck |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| SwedishSecurityNumber | missing length check should fail | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| SwedishSecurityNumber | missing trim should fail | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ |
+| SwedishSecurityNumber | missing luhn check should fail | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ |
+| SwedishSecurityNumber | wrong year format should fail | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
+| SwedishSecurityNumber | missing format check should fail | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | 
+| Coverage |  | 82.35% | 80% | 81.25% | 80% | 82.35% | 80% |
